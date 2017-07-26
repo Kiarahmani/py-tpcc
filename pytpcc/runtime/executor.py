@@ -44,7 +44,7 @@ from util import *
 
 class Executor:
     
-    def __init__(self, driver, scaleParameters, stop_on_error = False):
+    def __init__(self, driver, scaleParameters, stop_on_error = False,):
         self.driver = driver
         self.scaleParameters = scaleParameters
         self.stop_on_error = stop_on_error
@@ -53,7 +53,7 @@ class Executor:
     def execute(self, duration):
         r = results.Results()
         assert r
-        logging.info("Executing benchmark for %d seconds" % duration)
+        #logging.info("Executing benchmark for %d seconds" % duration)
         start = r.startBenchmark()
         debug = logging.getLogger().isEnabledFor(logging.DEBUG)
 
@@ -67,7 +67,7 @@ class Executor:
             except KeyboardInterrupt:
                 return -1
             except (Exception, AssertionError), ex:
-                logging.warn("Failed to execute Transaction '%s': %s" % (txn, ex))
+                #logging.warn("Failed to execute Transaction '%s': %s" % (txn, ex))
                 if debug: traceback.print_exc(file=sys.stdout)
                 if self.stop_on_error: raise
                 r.abortTransaction(txn_id)

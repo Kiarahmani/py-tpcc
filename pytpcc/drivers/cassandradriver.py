@@ -398,7 +398,7 @@ class CassandraDriver(AbstractDriver):
     ## doDelivery
     ##----------------------------------
     def doDelivery(self, params):
-        logging.debug("do delivery")    
+ #       logging.debug("do delivery")    
 
         w_id = params["w_id"]
         o_carrier_id = params["o_carrier_id"]
@@ -423,11 +423,7 @@ class CassandraDriver(AbstractDriver):
                 continue
             if no_o_id==None:
                 continue
-    #        print no_o_id
-    #        print d_id
-    #        print w_id
             orders_rowkey=no_o_id.zfill(5)+str(d_id).zfill(5)+str(w_id).zfill(5)
-            #print orders_rowkey
             o=self.orderscf.get(orders_rowkey)
             
 
@@ -590,7 +586,7 @@ class CassandraDriver(AbstractDriver):
     ##----------------------------
 
     def doPayment(self, params):
-        logging.debug("do payment")
+   #     logging.debug("do payment")
         w_id = params["w_id"]
         d_id = params["d_id"]
         h_amount = params["h_amount"]
@@ -662,7 +658,7 @@ class CassandraDriver(AbstractDriver):
     ## doOrderStatus
     ##-----------------------------------
     def doOrderStatus(self, params):
-        logging.info("do orderStatus")
+    #    logging.info("do orderStatus")
         w_id = params["w_id"]
         d_id = params["d_id"]
         c_id = params["c_id"]
@@ -731,7 +727,7 @@ class CassandraDriver(AbstractDriver):
 
 
     def doStockLevel(self, params):
-        logging.info("do stocklevel")
+     #   logging.info("do stocklevel")
         w_id = params["w_id"]
         d_id = params["d_id"]
         threshold = params["threshold"]

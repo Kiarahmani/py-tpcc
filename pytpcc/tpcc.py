@@ -85,7 +85,7 @@ def startLoading(driverClass, scaleParameters, args, config):
     loader_results = [ ]
     for i in range(args['clients']):
         r = pool.apply_async(loaderFunc, (driverClass, scaleParameters, args, config, w_ids[i], True))
-        loader_results.append(r)
+	loader_results.append(r)
     ## FOR
     
     pool.close()
@@ -133,14 +133,14 @@ def startExecution(driverClass, scaleParameters, args, config):
     worker_results = [ ]
     for i in range(args['clients']):
         r = pool.apply_async(executorFunc, (driverClass, scaleParameters, args, config, debug,))
-        worker_results.append(r)
+	worker_results.append(r)
     ## FOR
     pool.close()
     pool.join()
     
     total_results = results.Results()
     for asyncr in worker_results:
-        asyncr.wait()
+	asyncr.wait()
         r = asyncr.get()
         assert r != None, "No results object returned!"
         if type(r) == int and r == -1: sys.exit(1)
@@ -156,7 +156,6 @@ def startExecution(driverClass, scaleParameters, args, config):
 def executorFunc(driverClass, scaleParameters, args, config, debug):
     driver = driverClass(args['ddl'])
     assert driver != None
-    logging.debug("Starting client execution: %s" % driver)
     
     config['execute'] = True
     config['reset'] = False

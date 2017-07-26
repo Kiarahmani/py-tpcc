@@ -116,7 +116,7 @@ class Results:
         total_cnt = 0
         for txn in sorted(self.txn_counters.keys()):
             txn_time = self.txn_times[txn]
-            txn_cnt = self.txn_counters[txn]
+	    txn_cnt = self.txn_counters[txn]
             rate = u"%.02f txn/s" % ((txn_cnt / txn_time))
             ret += f % (txn, str(txn_cnt), str(txn_time * 1000000), rate)
             
